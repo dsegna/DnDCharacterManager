@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/charName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#CC0033"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/charLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textColor="#3399FF"
+        android:textSize="16dp"
+        android:layout_centerVertical="true" />
+
+    <TextView
+        android:id="@+id/labelLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/charLevel"
+        android:textColor="#3399FF"
+        android:textSize="16dp"
+        android:text="Level "
+        android:layout_centerVertical="true" />
+
+    <TextView
+        android:id="@+id/charRace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/charName"
+        android:paddingLeft="10dp"
+        android:textColor="#3399FF"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/charClass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/charName"
+        android:layout_toRightOf="@+id/charRace"
+        android:paddingLeft="10dp"
+        android:textColor="#3399FF"
+        android:textSize="16dp" />
+
+</RelativeLayout>
