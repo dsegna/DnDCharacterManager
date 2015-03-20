@@ -4,14 +4,14 @@
     android:layout_height="fill_parent" >
 
     <TextView
-        android:id="@+id/charName"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#CC0033"
         android:textSize="18dp" />
 
     <TextView
-        android:id="@+id/charLevel"
+        android:id="@+id/level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -23,17 +23,17 @@
         android:id="@+id/labelLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/charLevel"
+        android:layout_toLeftOf="@+id/level"
         android:textColor="#3399FF"
         android:textSize="16dp"
         android:text="Level "
         android:layout_centerVertical="true" />
 
     <TextView
-        android:id="@+id/charRace"
+        android:id="@+id/race"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/charName"
+        android:layout_below="@+id/name"
         android:paddingLeft="10dp"
         android:textColor="#3399FF"
         android:textSize="16dp" />
@@ -42,8 +42,8 @@
         android:id="@+id/charClass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/charName"
-        android:layout_toRightOf="@+id/charRace"
+        android:layout_below="@+id/name"
+        android:layout_toRightOf="@+id/race"
         android:paddingLeft="10dp"
         android:textColor="#3399FF"
         android:textSize="16dp" />

@@ -3,15 +3,21 @@ package dps924.ddcharactermanager.rules;
 import android.util.Log;
 
 import java.util.HashMap;
+import java.util.logging.Level;
 
 import dps924.ddcharactermanager.exceptions.InvalidAbilityException;
 
 public class RuleDatabase {
     private static final String TAG = RuleDatabase.class.getName();
 
+    private LevelRule levelRule;
     private HashMap<String, AbilityRule> abilityRules = new HashMap<>();
     private HashMap<String, SkillRule> skillRules = new HashMap<>();
+    private HashMap<String, RaceRule> raceRules = new HashMap<> ();
 
+    public LevelRule getLevelRule() {
+        return levelRule;
+    }
     public HashMap<String, AbilityRule> getAbilityRules() {
         return abilityRules;
     }
@@ -20,7 +26,7 @@ public class RuleDatabase {
         if(!abilityRules.containsKey(key)) {
             abilityRules.put(key, rule);
         } else {
-            Log.e(TAG, "AbilityRule with key: " + key + " already exists");
+            Log.w(TAG, "AbilityRule with key: " + key + " already exists");
         }
     }
     public HashMap<String, SkillRule> getSkillRules() {
@@ -31,7 +37,16 @@ public class RuleDatabase {
         if(!skillRules.containsKey(name)) {
             skillRules.put(name, rule);
         } else {
-            Log.e(TAG, "SkillRule with name: " + name + "already exists");
+            Log.w(TAG, "SkillRule with name: " + name + "already exists");
+        }
+    }
+    public HashMap<String, RaceRule> getRaceRules() { return raceRules; }
+    public void addRaceRule(RaceRule rule) {
+        String name = rule.getName();
+        if(!raceRules.containsKey(name)) {
+            raceRules.put(name, rule);
+        } else {
+            Log.w(TAG, "RaceRule with name: " + name + "already exists");
         }
     }
     public int getAbilityModifier(String key, int value) {

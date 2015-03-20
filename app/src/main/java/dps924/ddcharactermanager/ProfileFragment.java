@@ -73,8 +73,30 @@ public class ProfileFragment extends Fragment {
     }
     private void initProfileFragment(View view) {
         DDCharacter character = characterActivity.getCharacter();
-        EditText editName = (EditText) view.findViewById(R.id.editName);
-        editName.setText(character.charName);
+        //Set name
+        EditText tmpField = (EditText) view.findViewById(R.id.editName);
+        tmpField.setText(character.getName());
+        //Set race
+        tmpField = (EditText) view.findViewById(R.id.editRace);
+        tmpField.setText(character.getRace());
+        //Set level
+        tmpField = (EditText) view.findViewById(R.id.editLevel);
+        tmpField.setText(String.valueOf(character.getLevel()));
+        //Set exp
+        tmpField = (EditText) view.findViewById(R.id.editExp);
+        tmpField.setText(String.valueOf(character.getExp()));
+        //Set class
+        tmpField = (EditText) view.findViewById(R.id.editClass);
+        tmpField.setText(character.getCharClass());
+        //Set paragon
+        tmpField = (EditText) view.findViewById(R.id.editParagon);
+        tmpField.setText(character.getParagon());
+        //Set epic
+        tmpField = (EditText) view.findViewById(R.id.editEpic);
+        tmpField.setText(character.getEpic());
+        //Set description
+        tmpField = (EditText) view.findViewById(R.id.editDesc);
+        tmpField.setText(character.getDesc());
     }
 
     // TODO: Rename method, update argument and hook method into UI event

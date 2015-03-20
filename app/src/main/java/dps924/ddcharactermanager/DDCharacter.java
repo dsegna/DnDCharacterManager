@@ -5,23 +5,24 @@ import java.util.HashMap;
 
 import dps924.ddcharactermanager.exceptions.InvalidAbilityException;
 import dps924.ddcharactermanager.rules.AbilityRule;
+import dps924.ddcharactermanager.rules.RaceRule;
 import dps924.ddcharactermanager.rules.RuleDatabase;
 
 public class DDCharacter {
 
-    public String charName;
-    public int charLevel;
-    public String charRace;
-    public String charClass;
+    // Character Profile Values
+    private String name, race, charClass, paragon ="", epic ="", desc ="";
+    private int level, exp = 0;
+    private RaceRule raceRule;
 
     private RuleDatabase ruleDB;
     private HashMap<String, Integer> abilityScores = new HashMap<>();
     private ArrayList<String> trainedSkills = new ArrayList<>();
 
-    public DDCharacter(String charName, int charLevel, String charRace, String charClass, RuleDatabase ruleDB) {
-        this.charName = charName;
-        this.charLevel = charLevel;
-        this.charRace = charRace;
+    public DDCharacter(String name, int level, String race, String charClass, RuleDatabase ruleDB) {
+        this.name = name;
+        this.level = level;
+        this.race = race;
         this.charClass = charClass;
         this.ruleDB = ruleDB;
         //TODO: Hardcoding default ability scores
@@ -49,5 +50,30 @@ public class DDCharacter {
         } else {
             return false;
         }
+    }
+    // Getters
+    public String getName() {
+        return name;
+    }
+    public String getRace() {
+        return race;
+    }
+    public String getCharClass() {
+        return charClass;
+    }
+    public String getParagon() {
+        return paragon;
+    }
+    public String getEpic() {
+        return epic;
+    }
+    public String getDesc() {
+        return desc;
+    }
+    public int getLevel() {
+        return level;
+    }
+    public int getExp() {
+        return exp;
     }
 }

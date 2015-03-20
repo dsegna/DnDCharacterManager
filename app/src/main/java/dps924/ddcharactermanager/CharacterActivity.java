@@ -1,18 +1,18 @@
 package dps924.ddcharactermanager;
 
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.astuetz.PagerSlidingTabStrip;
 
 import dps924.ddcharactermanager.rules.AbilityRule;
+import dps924.ddcharactermanager.rules.RaceRule;
 import dps924.ddcharactermanager.rules.RuleDatabase;
 import dps924.ddcharactermanager.rules.SkillRule;
-
 
 public class CharacterActivity extends ActionBarActivity
         implements ProfileFragment.OnFragmentInteractionListener,
@@ -33,6 +33,16 @@ public class CharacterActivity extends ActionBarActivity
         //Bind tabs to the ViewPager
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.characterTabs);
         tabs.setViewPager(viewPager);
+        //Change title bar based on the page being viewed
+        tabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels){}
+            public void onPageSelected(int position) {
+                getSupportActionBar().setTitle(viewPager.getAdapter().getPageTitle(position));
+            }
+        });
+        //Set title bar to the first view title
+        getSupportActionBar().setTitle(viewPager.getAdapter().getPageTitle(0));
         //TODO: Creating testing DB and character. Should be dynamic
         testDB = new RuleDatabase();
         testDB.addAbilityRule(new AbilityRule("Strength", "STR", ""));
@@ -60,7 +70,11 @@ public class CharacterActivity extends ActionBarActivity
         testDB.addSkillRule(new SkillRule("Streetwise", "CHA", 5));
         testDB.addSkillRule(new SkillRule("Thievery", "DEX", 5));
 
-        ddCharacter = new DDCharacter("Test", 1, "TestRace", "TestClass", testDB);
+        testDB.addRaceRule(new RaceRule("Human"));
+        testDB.addRaceRule(new RaceRule("Dwarf"));
+        testDB.addRaceRule(new RaceRule("Halfling"));
+
+        ddCharacter = new DDCharacter("TestName", 3, "TestRace", "TestClass", testDB);
 
     }
 

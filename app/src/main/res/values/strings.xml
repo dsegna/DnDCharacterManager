@@ -6,4 +6,12 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_character">CharacterActivity</string>
+    <string name="Level">Level</string>
+    <string name="Name">Name</string>
+    <string name="Race">Race</string>
+    <string name="Epic">Epic</string>
+    <string name="Class">Class</string>
+    <string name="Paragon">Paragon</string>
+    <string name="Desc">Desc</string>
+    <string name="Exp">Exp</string>
 </resources>

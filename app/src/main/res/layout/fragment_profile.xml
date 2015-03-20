@@ -1,27 +1,167 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context="dps924.ddcharactermanager.ProfileFragment">
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true">
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/profileName"
+            android:text="@string/Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp" />
+            android:layout_marginTop="@dimen/profile_margin_top"
+            android:layout_marginLeft="@dimen/profile_margin_left"
+            android:layout_marginStart="@dimen/profile_margin_left" />
         <EditText
             android:id="@+id/editName"
+            android:inputType="textNoSuggestions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/textView"
-            android:layout_marginLeft="20dp"/>
-
+            android:layout_toRightOf="@+id/profileName"
+            android:layout_toEndOf="@+id/profileName"
+            android:layout_marginLeft="@dimen/profile_margin_left"
+            android:layout_marginStart="@dimen/profile_margin_left"/>
+        <TextView
+            android:id="@+id/profileLevel"
+            android:text="@string/Level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profileName"
+            android:layout_alignLeft="@id/profileName"
+            android:layout_alignStart="@id/profileName"
+            android:layout_marginTop="@dimen/profile_margin_top"/>
+        <EditText
+            android:id="@+id/editLevel"
+            android:inputType="number"
+            android:ems="2"
+            android:gravity="end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/profileLevel"
+            android:layout_toEndOf="@id/profileLevel"
+            android:layout_alignLeft="@id/editName"
+            android:layout_alignStart="@id/editName"
+            android:layout_alignBottom="@id/profileLevel" />
+        <TextView
+            android:id="@+id/profileExp"
+            android:text="@string/Exp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/editLevel"
+            android:layout_toEndOf="@id/editLevel"
+            android:layout_alignBottom="@id/profileLevel"
+            android:layout_marginLeft="@dimen/profile_margin_left"
+            android:layout_marginStart="@dimen/profile_margin_left"/>
+        <EditText
+            android:id="@+id/editExp"
+            android:inputType="number"
+            android:gravity="end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/profileExp"
+            android:layout_toEndOf="@id/profileExp"
+            android:layout_alignBottom="@id/profileLevel"
+            android:layout_marginLeft="@dimen/profile_margin_left"
+            android:layout_marginStart="@dimen/profile_margin_left"/>
+        <TextView
+            android:id="@+id/profileRace"
+            android:text="@string/Race"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profileLevel"
+            android:layout_alignLeft="@id/profileName"
+            android:layout_alignStart="@id/profileName"
+            android:layout_marginTop="@dimen/profile_margin_top"/>
+        <EditText
+            android:id="@+id/editRace"
+            android:inputType="textNoSuggestions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/profileRace"
+            android:layout_toEndOf="@+id/profileRace"
+            android:layout_alignLeft="@id/editName"
+            android:layout_alignStart="@id/editName"
+            android:layout_alignBottom="@id/profileRace"/>
+        <TextView
+            android:id="@+id/profileClass"
+            android:text="@string/Class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profileRace"
+            android:layout_alignLeft="@id/profileName"
+            android:layout_alignStart="@id/profileName"
+            android:layout_marginTop="@dimen/profile_margin_top"/>
+        <EditText
+            android:id="@+id/editClass"
+            android:inputType="textNoSuggestions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/profileClass"
+            android:layout_toEndOf="@+id/profileClass"
+            android:layout_alignLeft="@id/editName"
+            android:layout_alignStart="@id/editName"
+            android:layout_alignBottom="@id/profileClass"/>
+        <TextView
+            android:id="@+id/profileParagon"
+            android:text="@string/Paragon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profileClass"
+            android:layout_alignLeft="@id/profileName"
+            android:layout_alignStart="@id/profileName"
+            android:layout_marginTop="@dimen/profile_margin_top"/>
+        <EditText
+            android:id="@+id/editParagon"
+            android:inputType="textNoSuggestions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/profileParagon"
+            android:layout_toEndOf="@id/profileParagon"
+            android:layout_alignStart="@id/editName"
+            android:layout_alignLeft="@id/editName"
+            android:layout_alignBottom="@id/profileParagon"/>
+        <TextView
+            android:id="@+id/profileEpic"
+            android:text="@string/Epic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profileParagon"
+            android:layout_alignLeft="@id/profileName"
+            android:layout_alignStart="@id/profileName"
+            android:layout_marginTop="@dimen/profile_margin_top"/>
+        <EditText
+            android:id="@+id/editEpic"
+            android:inputType="textNoSuggestions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/profileEpic"
+            android:layout_toEndOf="@+id/profileEpic"
+            android:layout_alignLeft="@id/editName"
+            android:layout_alignStart="@id/editName"
+            android:layout_alignBottom="@id/profileEpic"/>
+        <TextView
+            android:id="@+id/profileDesc"
+            android:text="@string/Desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profileEpic"
+            android:layout_alignLeft="@id/profileName"
+            android:layout_alignStart="@id/profileName"
+            android:layout_marginTop="@dimen/profile_margin_top"/>
+        <EditText
+            android:id="@+id/editDesc"
+            android:inputType="textMultiLine"
+            android:minLines="6"
+            android:gravity="top|start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/profileDesc"
+            android:layout_toEndOf="@id/profileDesc"
+            android:layout_alignLeft="@+id/editName"
+            android:layout_alignStart="@+id/editName"
+            android:layout_alignTop="@+id/profileDesc"/>
     </RelativeLayout>
-</FrameLayout>
+</ScrollView>

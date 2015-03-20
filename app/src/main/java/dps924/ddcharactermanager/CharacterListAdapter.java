@@ -37,18 +37,18 @@ public class CharacterListAdapter extends ArrayAdapter<DDCharacter>{
             convertView = mInflater.inflate(R.layout.character_list_item, null);
 
             holder = new ViewHolder();
-            holder.txtName = (TextView)convertView.findViewById(R.id.charName);
-            holder.txtLevel = (TextView)convertView.findViewById(R.id.charLevel);
-            holder.txtRace = (TextView)convertView.findViewById(R.id.charRace);
+            holder.txtName = (TextView)convertView.findViewById(R.id.name);
+            holder.txtLevel = (TextView)convertView.findViewById(R.id.level);
+            holder.txtRace = (TextView)convertView.findViewById(R.id.race);
             holder.txtClass = (TextView)convertView.findViewById(R.id.charClass);
             convertView.setTag(holder);
         }else
             holder = (ViewHolder) convertView.getTag();
         ImageView iv;
-        holder.txtName.setText(character.charName);
-        holder.txtLevel.setText(Integer.toString(character.charLevel));
-        holder.txtRace.setText(character.charRace);
-        holder.txtClass.setText(character.charClass);
+        holder.txtName.setText(character.getName());
+        holder.txtLevel.setText(Integer.toString(character.getLevel()));
+        holder.txtRace.setText(character.getRace());
+        holder.txtClass.setText(character.getCharClass());
 
         return convertView;
     }
