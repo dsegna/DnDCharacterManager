@@ -18,35 +18,17 @@ public class RuleDatabase {
     public LevelRule getLevelRule() {
         return levelRule;
     }
+    /* Ability Rules */
     public HashMap<String, AbilityRule> getAbilityRules() {
         return abilityRules;
     }
     public void addAbilityRule(AbilityRule rule) {
+        Log.d(TAG, "Adding ability rule " + rule.getName());
         String key = rule.getKey();
         if(!abilityRules.containsKey(key)) {
             abilityRules.put(key, rule);
         } else {
             Log.w(TAG, "AbilityRule with key: " + key + " already exists");
-        }
-    }
-    public HashMap<String, SkillRule> getSkillRules() {
-        return skillRules;
-    }
-    public void addSkillRule(SkillRule rule) {
-        String name = rule.getName();
-        if(!skillRules.containsKey(name)) {
-            skillRules.put(name, rule);
-        } else {
-            Log.w(TAG, "SkillRule with name: " + name + "already exists");
-        }
-    }
-    public HashMap<String, RaceRule> getRaceRules() { return raceRules; }
-    public void addRaceRule(RaceRule rule) {
-        String name = rule.getName();
-        if(!raceRules.containsKey(name)) {
-            raceRules.put(name, rule);
-        } else {
-            Log.w(TAG, "RaceRule with name: " + name + "already exists");
         }
     }
     public int getAbilityModifier(String key, int value) {
@@ -56,6 +38,29 @@ public class RuleDatabase {
         }
         else {
             throw new InvalidAbilityException(key);
+        }
+    }
+    /* Skill Rules */
+    public HashMap<String, SkillRule> getSkillRules() {
+        return skillRules;
+    }
+    public void addSkillRule(SkillRule rule) {
+        Log.d(TAG, "Adding skill rule " + rule.getName());
+        String name = rule.getName();
+        if(!skillRules.containsKey(name)) {
+            skillRules.put(name, rule);
+        } else {
+            Log.w(TAG, "SkillRule with name: " + name + "already exists");
+        }
+    }
+    /* Race Rules */
+    public HashMap<String, RaceRule> getRaceRules() { return raceRules; }
+    public void addRaceRule(RaceRule rule) {
+        String name = rule.getName();
+        if(!raceRules.containsKey(name)) {
+            raceRules.put(name, rule);
+        } else {
+            Log.w(TAG, "RaceRule with name: " + name + "already exists");
         }
     }
 }

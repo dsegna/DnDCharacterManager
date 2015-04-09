@@ -4,11 +4,12 @@ public class AbilityRule {
 
     private String name;
     private String key;
+    private String calculation;
 
     public AbilityRule(String name, String key, String calculation) {
         this.name = name;
         this.key = key;
-        //TODO: Parse the calculation string
+        this.calculation = calculation;
     }
     public String getName() {
         return name;
@@ -16,8 +17,8 @@ public class AbilityRule {
     public String getKey() {
         return key;
     }
-    public int calculateModifier(int value) {
+    public int calculateModifier(int abilityScore) {
         //TODO: Change hardcoded calculation to use dynamic calculation string
-        return value - 10 / 2;
+        return abilityScore - 10 / 2;
     }
 }

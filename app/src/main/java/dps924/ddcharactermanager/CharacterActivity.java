@@ -1,14 +1,18 @@
 package dps924.ddcharactermanager;
 
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.astuetz.PagerSlidingTabStrip;
 
+import dps924.ddcharactermanager.database.RuleDatabaseFactory;
+import dps924.ddcharactermanager.database.SQLiteAssetDatabase;
 import dps924.ddcharactermanager.rules.AbilityRule;
 import dps924.ddcharactermanager.rules.RaceRule;
 import dps924.ddcharactermanager.rules.RuleDatabase;
@@ -17,10 +21,10 @@ import dps924.ddcharactermanager.rules.SkillRule;
 public class CharacterActivity extends ActionBarActivity
         implements ProfileFragment.OnFragmentInteractionListener,
                    SkillsFragment.OnFragmentInteractionListener {
-
+    private static final String TAG = CharacterActivity.class.getName();
     ViewPager viewPager;
     //DEBUGGING
-    RuleDatabase testDB;
+    RuleDatabase ruleDatabase;
     DDCharacter ddCharacter;
 
     @Override
@@ -43,38 +47,41 @@ public class CharacterActivity extends ActionBarActivity
         });
         //Set title bar to the first view title
         getSupportActionBar().setTitle(viewPager.getAdapter().getPageTitle(0));
+        //TODO: Support for multiple possible databases
+        SQLiteAssetDatabase sqlDb = new SQLiteAssetDatabase(this, "TestDB", 1);
+        ruleDatabase = new RuleDatabaseFactory(sqlDb).getRuleDatabase();
         //TODO: Creating testing DB and character. Should be dynamic
-        testDB = new RuleDatabase();
-        testDB.addAbilityRule(new AbilityRule("Strength", "STR", ""));
-        testDB.addAbilityRule(new AbilityRule("Constitution", "CON", ""));
-        testDB.addAbilityRule(new AbilityRule("Dexterity", "DEX", ""));
-        testDB.addAbilityRule(new AbilityRule("Intelligence", "INT", ""));
-        testDB.addAbilityRule(new AbilityRule("Wisdom", "WIS", ""));
-        testDB.addAbilityRule(new AbilityRule("Charisma", "CHA", ""));
+        /*
+        ruleDatabase.addAbilityRule(new AbilityRule("Strength", "STR", ""));
+        ruleDatabase.addAbilityRule(new AbilityRule("Constitution", "CON", ""));
+        ruleDatabase.addAbilityRule(new AbilityRule("Dexterity", "DEX", ""));
+        ruleDatabase.addAbilityRule(new AbilityRule("Intelligence", "INT", ""));
+        ruleDatabase.addAbilityRule(new AbilityRule("Wisdom", "WIS", ""));
+        ruleDatabase.addAbilityRule(new AbilityRule("Charisma", "CHA", ""));
+    */
+        ruleDatabase.addSkillRule(new SkillRule("Acrobatics", "DEX", 5));
+        ruleDatabase.addSkillRule(new SkillRule("Arcana", "INT", 5));
+        ruleDatabase.addSkillRule(new SkillRule("Athletics", "STR", 5));
+        ruleDatabase.addSkillRule(new SkillRule("Bluff", "CHA", 5));
+        ruleDatabase.addSkillRule(new SkillRule("Diplomacy", "CHA", 5));
+        ruleDatabase.addSkillRule(new SkillRule("Dungeoneering", "WIS", 5));
+        ruleDatabase.addSkillRule(new SkillRule("Endurance", "CON", 5));
+        ruleDatabase.addSkillRule(new SkillRule("Heal", "WIS", 5));
+        ruleDatabase.addSkillRule(new SkillRule("History", "INT", 5));
+        ruleDatabase.addSkillRule(new SkillRule("Insight", "WIS", 5));
+        ruleDatabase.addSkillRule(new SkillRule("Intimidate", "CHA", 5));
+        ruleDatabase.addSkillRule(new SkillRule("Nature", "WIS", 5));
+        ruleDatabase.addSkillRule(new SkillRule("Perception", "WIS", 5));
+        ruleDatabase.addSkillRule(new SkillRule("Religion", "INT", 5));
+        ruleDatabase.addSkillRule(new SkillRule("Stealth", "DEX", 5));
+        ruleDatabase.addSkillRule(new SkillRule("Streetwise", "CHA", 5));
+        ruleDatabase.addSkillRule(new SkillRule("Thievery", "DEX", 5));
 
-        testDB.addSkillRule(new SkillRule("Acrobatics", "DEX", 5));
-        testDB.addSkillRule(new SkillRule("Arcana", "INT", 5));
-        testDB.addSkillRule(new SkillRule("Athletics", "STR", 5));
-        testDB.addSkillRule(new SkillRule("Bluff", "CHA", 5));
-        testDB.addSkillRule(new SkillRule("Diplomacy", "CHA", 5));
-        testDB.addSkillRule(new SkillRule("Dungeoneering", "WIS", 5));
-        testDB.addSkillRule(new SkillRule("Endurance", "CON", 5));
-        testDB.addSkillRule(new SkillRule("Heal", "WIS", 5));
-        testDB.addSkillRule(new SkillRule("History", "INT", 5));
-        testDB.addSkillRule(new SkillRule("Insight", "WIS", 5));
-        testDB.addSkillRule(new SkillRule("Intimidate", "CHA", 5));
-        testDB.addSkillRule(new SkillRule("Nature", "WIS", 5));
-        testDB.addSkillRule(new SkillRule("Perception", "WIS", 5));
-        testDB.addSkillRule(new SkillRule("Religion", "INT", 5));
-        testDB.addSkillRule(new SkillRule("Stealth", "DEX", 5));
-        testDB.addSkillRule(new SkillRule("Streetwise", "CHA", 5));
-        testDB.addSkillRule(new SkillRule("Thievery", "DEX", 5));
+        ruleDatabase.addRaceRule(new RaceRule("Human"));
+        ruleDatabase.addRaceRule(new RaceRule("Dwarf"));
+        ruleDatabase.addRaceRule(new RaceRule("Halfling"));
 
-        testDB.addRaceRule(new RaceRule("Human"));
-        testDB.addRaceRule(new RaceRule("Dwarf"));
-        testDB.addRaceRule(new RaceRule("Halfling"));
-
-        ddCharacter = new DDCharacter("TestName", 3, "TestRace", "TestClass", testDB);
+        ddCharacter = new DDCharacter("TestName", 3, "TestRace", "TestClass", ruleDatabase);
 
     }
 
