@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
-    private static final int NUM_PAGES = 2;
+    private static final int NUM_PAGES = 3;
 
     public ViewPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -18,6 +18,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                 return new ProfileFragment();
             case 1:
                 return new SkillsFragment();
+            case 2:
+                return new FeatsFragment();
         }
         return new CharactersFragment();
     }
@@ -32,6 +34,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                 return "Profile";
             case 1:
                 return "Skills";
+            case 2:
+                return "Feats";
         }
         return "??";
     }

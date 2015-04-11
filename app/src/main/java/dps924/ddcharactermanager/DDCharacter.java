@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import dps924.ddcharactermanager.exceptions.InvalidAbilityException;
 import dps924.ddcharactermanager.rules.AbilityRule;
+import dps924.ddcharactermanager.rules.FeatRule;
 import dps924.ddcharactermanager.rules.RaceRule;
 import dps924.ddcharactermanager.rules.RuleDatabase;
 
@@ -18,6 +19,7 @@ public class DDCharacter {
     private RuleDatabase ruleDB;
     private HashMap<String, Integer> abilityScores = new HashMap<>();
     private ArrayList<String> trainedSkills = new ArrayList<>();
+    private ArrayList<FeatRule> feats = new ArrayList<>();
 
     public DDCharacter(String name, int level, String race, String charClass, RuleDatabase ruleDB) {
         this.name = name;
@@ -75,5 +77,9 @@ public class DDCharacter {
     }
     public int getExp() {
         return exp;
+    }
+    public ArrayList<FeatRule> getFeats() { return feats; }
+    public void addFeat(FeatRule feat) {
+        feats.add(feat);
     }
 }

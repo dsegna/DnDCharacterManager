@@ -14,6 +14,7 @@ public class RuleDatabase {
     private HashMap<String, AbilityRule> abilityRules = new HashMap<>();
     private HashMap<String, SkillRule> skillRules = new HashMap<>();
     private HashMap<String, RaceRule> raceRules = new HashMap<> ();
+    private HashMap<String, FeatRule> featRules = new HashMap<>();
 
     public LevelRule getLevelRule() {
         return levelRule;
@@ -61,6 +62,16 @@ public class RuleDatabase {
             raceRules.put(name, rule);
         } else {
             Log.w(TAG, "RaceRule with name: " + name + "already exists");
+        }
+    }
+    /* Feat Rules */
+    public HashMap<String, FeatRule> getFeatRules() { return featRules; }
+    public void addFeatRule(FeatRule rule) {
+        String name = rule.getName();
+        if(!featRules.containsKey(name)) {
+            featRules.put(name, rule);
+        } else {
+            Log.v(TAG, "FeatRule with name: " + name + "already exists");
         }
     }
 }
