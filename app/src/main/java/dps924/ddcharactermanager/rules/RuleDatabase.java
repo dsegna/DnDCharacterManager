@@ -2,6 +2,7 @@ package dps924.ddcharactermanager.rules;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 
@@ -15,6 +16,8 @@ public class RuleDatabase {
     private HashMap<String, SkillRule> skillRules = new HashMap<>();
     private HashMap<String, RaceRule> raceRules = new HashMap<> ();
     private HashMap<String, FeatRule> featRules = new HashMap<>();
+    private HashMap<String, AlignmentRule> alignmentRules = new HashMap<>();
+    private HashMap<String, DeityRule> deityRules = new HashMap<>();
 
     public LevelRule getLevelRule() {
         return levelRule;
@@ -45,6 +48,11 @@ public class RuleDatabase {
     public HashMap<String, SkillRule> getSkillRules() {
         return skillRules;
     }
+    public ArrayList<SkillRule> getSkillRulesList() {
+        ArrayList<SkillRule> skillList = new ArrayList<>();
+        skillList.addAll(skillRules.values());
+        return skillList;
+    }
     public void addSkillRule(SkillRule rule) {
         Log.d(TAG, "Adding skill rule " + rule.getName());
         String name = rule.getName();
@@ -56,6 +64,11 @@ public class RuleDatabase {
     }
     /* Race Rules */
     public HashMap<String, RaceRule> getRaceRules() { return raceRules; }
+    public ArrayList<RaceRule> getRaceRulesList() {
+        ArrayList<RaceRule> raceList = new ArrayList<>();
+        raceList.addAll(raceRules.values());
+        return raceList;
+    }
     public void addRaceRule(RaceRule rule) {
         String name = rule.getName();
         if(!raceRules.containsKey(name)) {
@@ -74,4 +87,38 @@ public class RuleDatabase {
             Log.v(TAG, "FeatRule with name: " + name + "already exists");
         }
     }
+    /* Alignment Rules */
+    public HashMap<String, AlignmentRule> getAlignmentRules() {
+        return alignmentRules;
+    }
+    public ArrayList<AlignmentRule> getAlignmentRulesList() {
+        ArrayList<AlignmentRule> alignmentList = new ArrayList<>();
+        alignmentList.addAll(alignmentRules.values());
+        return alignmentList;
+    }
+    public void addAlignmentRule(AlignmentRule rule) {
+        String name = rule.getName();
+        if(!alignmentRules.containsKey(name)) {
+            alignmentRules.put(name, rule);
+        } else {
+            Log.v(TAG, "AlignmentRule with name: " + name + "already exists");
+        }
+    }
+    /* Deity Rules */
+    public ArrayList<DeityRule> getDeityRulesList() {
+        ArrayList<DeityRule> deityList = new ArrayList<>();
+        deityList.addAll(deityRules.values());
+        return deityList;
+    }
+    public void addDeityRule(DeityRule rule) {
+        String name = rule.getName();
+        if(!deityRules.containsKey(name)) {
+            deityRules.put(name, rule);
+        } else {
+            Log.v(TAG, "DeityRule with name: " + name + "already exists");
+        }
+    }
+    /* Language Rules */
+
+
 }

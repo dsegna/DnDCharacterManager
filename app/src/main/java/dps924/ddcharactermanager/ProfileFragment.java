@@ -8,6 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
+
+import dps924.ddcharactermanager.adapters.AlignmentSpinnerAdapter;
+import dps924.ddcharactermanager.adapters.DeitySpinnerAdapter;
+import dps924.ddcharactermanager.adapters.RaceSpinnerAdapter;
+import dps924.ddcharactermanager.rules.AlignmentRule;
 
 
 /**
@@ -76,18 +84,12 @@ public class ProfileFragment extends Fragment {
         //Set name
         EditText tmpField = (EditText) view.findViewById(R.id.editName);
         tmpField.setText(character.getName());
-        //Set race
-        tmpField = (EditText) view.findViewById(R.id.editRace);
-        tmpField.setText(character.getRace());
         //Set level
         tmpField = (EditText) view.findViewById(R.id.editLevel);
         tmpField.setText(String.valueOf(character.getLevel()));
         //Set exp
         tmpField = (EditText) view.findViewById(R.id.editExp);
         tmpField.setText(String.valueOf(character.getExp()));
-        //Set class
-        tmpField = (EditText) view.findViewById(R.id.editClass);
-        tmpField.setText(character.getCharClass());
         //Set paragon
         tmpField = (EditText) view.findViewById(R.id.editParagon);
         tmpField.setText(character.getParagon());
@@ -97,6 +99,21 @@ public class ProfileFragment extends Fragment {
         //Set description
         tmpField = (EditText) view.findViewById(R.id.editDesc);
         tmpField.setText(character.getDesc());
+        //Fill Race Spinner
+        Spinner raceSpinner = (Spinner) view.findViewById(R.id.raceSpinner);
+        RaceSpinnerAdapter raceSpinnerAdapter = new RaceSpinnerAdapter(characterActivity,
+                android.R.layout.simple_spinner_item, character.getRuleDB().getRaceRulesList());
+        raceSpinner.setAdapter(raceSpinnerAdapter);
+        //Fill Alignments Spinner
+        Spinner alignmentSpinner = (Spinner) view.findViewById(R.id.alignmentSpinner);
+        AlignmentSpinnerAdapter alignmentSpinnerAdapter = new AlignmentSpinnerAdapter(characterActivity,
+                android.R.layout.simple_spinner_item, character.getRuleDB().getAlignmentRulesList());
+        alignmentSpinner.setAdapter(alignmentSpinnerAdapter);
+        //Fill Deity Spinner
+        Spinner deitySpinner = (Spinner) view.findViewById(R.id.deitySpinner);
+        DeitySpinnerAdapter deitySpinnerAdapter = new DeitySpinnerAdapter(characterActivity,
+                android.R.layout.simple_spinner_item, character.getRuleDB().getDeityRulesList());
+        deitySpinner.setAdapter(deitySpinnerAdapter);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
