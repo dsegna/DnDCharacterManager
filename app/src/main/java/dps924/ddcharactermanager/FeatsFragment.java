@@ -1,6 +1,8 @@
 package dps924.ddcharactermanager;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -8,6 +10,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -74,9 +78,43 @@ public class FeatsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_feats, container, false);
         ListView featsListView = (ListView) view.findViewById(R.id.featList);
-        ArrayList<FeatRule> feats = characterActivity.getCharacter().getFeats();
-        FeatListAdapter featListAdapter = new FeatListAdapter(characterActivity, R.layout.feats_list_item, feats);
+        final ArrayList<FeatRule> feats = characterActivity.getCharacter().getFeats();
+        final FeatListAdapter featListAdapter = new FeatListAdapter(characterActivity, R.layout.feats_list_item, feats);
         featsListView.setAdapter(featListAdapter);
+        featsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> av, View v, final int i, long l) {
+                FeatRule f = (FeatRule) av.getItemAtPosition(i);
+
+                final View featEditDialog = LayoutInflater.from(characterActivity).inflate(R.layout.feat_edit_dialog, null);
+                final EditText fName = (EditText) featEditDialog.findViewById(R.id.fName);
+                final EditText fEffect = (EditText) featEditDialog.findViewById(R.id.fEffect);
+
+                fName.setText(f.getName());
+                fEffect.setText(f.getEffect());
+
+                new AlertDialog.Builder(characterActivity)
+                        .setTitle("Edit feat")
+                        .setView(featEditDialog)
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //Closes dialog
+                            }
+                        })
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                feats.get(i).setName(fName.getText().toString());
+                                feats.get(i).setEffect(fEffect.getText().toString());
+                                //May need to update character objects feat data
+                                //Reload Feats ListView using FeatListAdapter
+                                featListAdapter.notifyDataSetChanged();
+                            }
+                        })
+                        .show();
+            }
+        });
         return view;
     }
 

@@ -7,45 +7,45 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#CC0033"
-        android:textSize="18dp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:textColor="#3399FF"
-        android:textSize="16dp"
+        android:layout_alignParentEnd="true"
+        android:textSize="16sp"
         android:layout_centerVertical="true" />
 
     <TextView
         android:id="@+id/labelLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/level"
-        android:textColor="#3399FF"
-        android:textSize="16dp"
-        android:text="Level "
+        android:layout_toLeftOf="@id/level"
+        android:layout_toStartOf="@id/level"
+        android:textSize="16sp"
+        android:text="@string/Level"
         android:layout_centerVertical="true" />
 
     <TextView
         android:id="@+id/race"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/name"
-        android:paddingLeft="10dp"
-        android:textColor="#3399FF"
-        android:textSize="16dp" />
+        android:layout_below="@id/name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/charClass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/name"
-        android:layout_toRightOf="@+id/race"
-        android:paddingLeft="10dp"
-        android:textColor="#3399FF"
-        android:textSize="16dp" />
+        android:layout_below="@id/name"
+        android:layout_toRightOf="@id/race"
+        android:layout_toEndOf="@id/race"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:textSize="16sp" />
 
 </RelativeLayout>

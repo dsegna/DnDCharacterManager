@@ -7,10 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import dps924.ddcharactermanager.characters.CharacterDatabase;
 
 
 /**
@@ -35,6 +38,8 @@ public class CharactersFragment extends Fragment {
     private ListView characterList;
     private List<DDCharacter> characters;
     private View view;
+    private CharacterActivity characterActivity;
+    private CharacterDatabase charDB;
 
     /**
      * Use this factory method to create a new instance of
@@ -66,7 +71,7 @@ public class CharactersFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         view = getView();
-
+        characterActivity = (CharacterActivity) getActivity();
     }
 
     @Override
@@ -83,10 +88,19 @@ public class CharactersFragment extends Fragment {
         characters.add(new DDCharacter("Gnar", 4, "Gnome", "Artificer"));
         characters.add(new DDCharacter("Towelie", 5, "Towel", "Mesmer"));
         */
+        charDB = characterActivity.getCharacterDatabase(); //Should get from characterActivity
+        characters = charDB.getCharactersList();
 
         CharacterListAdapter characterAdapter = new CharacterListAdapter(this.getActivity(), R.layout.character_list_item, characters);
-
         characterList.setAdapter(characterAdapter);
+        final CharacterActivity charActivityHolder = characterActivity;
+        characterList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                DDCharacter c = (DDCharacter) parent.getItemAtPosition(position);
+                charActivityHolder.selectCharacter(c);
+            }
+        });
         return view;
     }
 
