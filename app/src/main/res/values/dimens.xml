@@ -3,7 +3,13 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <!-- Dimension for Profile View -->
+    <!-- Dimensions for Profile View -->
     <dimen name="profile_margin_top">20dp</dimen>
-    <dimen name="profile_margin_left">20dp</dimen>
+    <dimen name="profile_margin_left">10dp</dimen>
+    <dimen name="profile_margin_separator">40dp</dimen>
+    <!-- Dimensions for Skills View -->
+    <item format="float" type="dimen" name="skill_name_weight">0.4</item>
+    <item format="float" type="dimen" name="skill_modifier_weight">0.25</item>
+    <item format="float" type="dimen" name="skill_trained_weight">0.2</item>
+    <item format="float" type="dimen" name="skill_value_weight">0.15</item>
 </resources>

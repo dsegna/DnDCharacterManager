@@ -13,10 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import dps924.ddcharactermanager.adapters.SkillListAdapter;
 import dps924.ddcharactermanager.rules.RuleDatabase;
 import dps924.ddcharactermanager.rules.SkillRule;
 
@@ -79,85 +83,12 @@ public class SkillsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_skills, container, false);
-        initSkillsFragment(view);
+        //initSkillsFragment(view);
+        ListView skillsListView = (ListView) view.findViewById(R.id.skillList);
+        ArrayList<SkillRule> skills = characterActivity.getCharacter().getRuleDB().getSkillRulesList();
+        SkillListAdapter skillListAdapter = new SkillListAdapter(characterActivity, R.layout.skills_list_item, skills);
+        skillsListView.setAdapter(skillListAdapter);
         return view;
-    }
-
-    private void initSkillsFragment(View view) {
-        TableRow.LayoutParams col1 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1);
-        //col1.gravity = Gravity.LEFT; //col1.span = 1;
-        TableRow.LayoutParams col2 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1);
-        //col2.gravity = Gravity.CENTER_HORIZONTAL;
-        TableRow.LayoutParams col3 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1);
-        //col3.gravity = Gravity.CENTER_HORIZONTAL;
-        TableRow.LayoutParams col4 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1);
-        //col4.gravity = Gravity.CENTER_HORIZONTAL;
-
-        TableRow.LayoutParams  centerHorizontalGravity = new TableRow.LayoutParams();
-        centerHorizontalGravity.gravity = Gravity.CENTER_HORIZONTAL;
-        TableRow.LayoutParams  centerGravity = new TableRow.LayoutParams();
-        centerGravity.gravity = Gravity.CENTER;
-        LinearLayout.LayoutParams wrapContent = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        TableLayout.LayoutParams rowParams = new TableLayout.LayoutParams();
-        rowParams.gravity = Gravity.CENTER;
-
-
-        RuleDatabase ruleDB = characterActivity.getCharacter().getRuleDB();
-        TableLayout table = (TableLayout) view.findViewById(R.id.skillsTable);
-        for(SkillRule rule : ruleDB.getSkillRules().values()) {
-            // Create a new row
-            TableRow row = new TableRow(characterActivity);
-            row.setLayoutParams(rowParams);
-            //COLUMN 1
-            TextView test1 = new TextView(characterActivity);
-            test1.setText("Skill");
-            test1.setLayoutParams(col1);
-            row.addView(test1);
-            //COLUMN 2
-            TextView test2 = new TextView(characterActivity);
-            test2.setText(rule.getAbilityModKey());
-            test2.setLayoutParams(col2);
-            row.addView(test2);
-            //COLUMN 3
-            TextView test3 = new TextView(characterActivity);
-            test3.setText("Trained");
-            test3.setLayoutParams(col3);
-            row.addView(test3);
-            //COLUMN 4
-            TextView test4 = new TextView(characterActivity);
-            test4.setText("Value");
-            test4.setLayoutParams(col4);
-            row.addView(test4);
-            /*
-            //Add skill name
-            TextView skillName = new TextView(characterActivity);
-            skillName.setText(rule.getName());
-            skillName.setLayoutParams(leftGravity);
-            row.addView(skillName);
-            //Add attribute shortcode
-            TextView attribute = new TextView(characterActivity);
-            attribute.setText(rule.getAbilityModKey());
-            attribute.setLayoutParams(centerHorizontalGravity);
-            row.addView(attribute);
-            //Add trained checkbox
-            LinearLayout ll = new LinearLayout(characterActivity);
-            ll.setLayoutParams(centerGravity);
-            CheckBox trained = new CheckBox(characterActivity);
-            trained.setLayoutParams(wrapContent);
-            ll.addView(trained);
-            row.addView(ll);
-            //Add value text
-            TextView value = new TextView(characterActivity);
-            value.setText("0");
-            value.setLayoutParams(centerHorizontalGravity);
-            row.addView(value);
-            */
-            //Add the created row
-            table.addView(row);
-        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

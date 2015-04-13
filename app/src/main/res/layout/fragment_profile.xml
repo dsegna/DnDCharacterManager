@@ -20,10 +20,10 @@
             android:inputType="textNoSuggestions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/profileName"
-            android:layout_toEndOf="@+id/profileName"
-            android:layout_marginLeft="@dimen/profile_margin_left"
-            android:layout_marginStart="@dimen/profile_margin_left"/>
+            android:layout_toRightOf="@id/profileName"
+            android:layout_toEndOf="@id/profileName"
+            android:layout_marginLeft="@dimen/profile_margin_separator"
+            android:layout_marginStart="@dimen/profile_margin_separator"/>
         <TextView
             android:id="@+id/profileLevel"
             android:text="@string/Level"
@@ -75,16 +75,15 @@
             android:layout_alignLeft="@id/profileName"
             android:layout_alignStart="@id/profileName"
             android:layout_marginTop="@dimen/profile_margin_top"/>
-        <EditText
-            android:id="@+id/editRace"
-            android:inputType="textNoSuggestions"
+        <Spinner
+            android:id="@+id/raceSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/profileRace"
-            android:layout_toEndOf="@+id/profileRace"
+            android:layout_toRightOf="@id/profileRace"
+            android:layout_toEndOf="@id/profileRace"
             android:layout_alignLeft="@id/editName"
             android:layout_alignStart="@id/editName"
-            android:layout_alignBottom="@id/profileRace"/>
+            android:layout_alignTop="@id/profileRace"/>
         <TextView
             android:id="@+id/profileClass"
             android:text="@string/Class"
@@ -94,16 +93,15 @@
             android:layout_alignLeft="@id/profileName"
             android:layout_alignStart="@id/profileName"
             android:layout_marginTop="@dimen/profile_margin_top"/>
-        <EditText
-            android:id="@+id/editClass"
-            android:inputType="textNoSuggestions"
+        <Spinner
+            android:id="@+id/classSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/profileClass"
-            android:layout_toEndOf="@+id/profileClass"
+            android:layout_toRightOf="@id/profileClass"
+            android:layout_toEndOf="@id/profileClass"
             android:layout_alignLeft="@id/editName"
             android:layout_alignStart="@id/editName"
-            android:layout_alignBottom="@id/profileClass"/>
+            android:layout_alignTop="@id/profileClass"/>
         <TextView
             android:id="@+id/profileParagon"
             android:text="@string/Paragon"
@@ -137,17 +135,53 @@
             android:inputType="textNoSuggestions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/profileEpic"
-            android:layout_toEndOf="@+id/profileEpic"
+            android:layout_toRightOf="@id/profileEpic"
+            android:layout_toEndOf="@id/profileEpic"
             android:layout_alignLeft="@id/editName"
             android:layout_alignStart="@id/editName"
             android:layout_alignBottom="@id/profileEpic"/>
+        <TextView
+            android:id="@+id/profileAlignment"
+            android:text="@string/Alignment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profileEpic"
+            android:layout_alignLeft="@id/profileName"
+            android:layout_alignStart="@id/profileName"
+            android:layout_marginTop="@dimen/profile_margin_top" />
+        <Spinner
+            android:id="@+id/alignmentSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/profileAlignment"
+            android:layout_toEndOf="@id/profileAlignment"
+            android:layout_alignLeft="@id/editName"
+            android:layout_alignStart="@id/editName"
+            android:layout_alignTop="@id/profileAlignment" />
+        <TextView
+            android:id="@+id/profileDeity"
+            android:text="Deity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profileAlignment"
+            android:layout_alignLeft="@id/profileName"
+            android:layout_alignStart="@id/profileName"
+            android:layout_marginTop="@dimen/profile_margin_top" />
+        <Spinner
+            android:id="@+id/deitySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/profileDeity"
+            android:layout_toEndOf="@id/profileDeity"
+            android:layout_alignLeft="@id/editName"
+            android:layout_alignStart="@id/editName"
+            android:layout_alignTop="@id/profileDeity" />
         <TextView
             android:id="@+id/profileDesc"
             android:text="@string/Desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/profileEpic"
+            android:layout_below="@id/profileDeity"
             android:layout_alignLeft="@id/profileName"
             android:layout_alignStart="@id/profileName"
             android:layout_marginTop="@dimen/profile_margin_top"/>

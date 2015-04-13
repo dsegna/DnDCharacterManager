@@ -1,23 +1,41 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent" android:layout_width="match_parent">
-<FrameLayout
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="dps924.ddcharactermanager.SkillsFragment">
-
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/skillsTable"
-        android:stretchColumns="*">
-
-        <TableRow android:gravity="center">
-            <TextView android:gravity="left" android:text="Skill"/>
-            <TextView android:gravity="center_horizontal" android:text="Attribute"/>
-            <TextView android:gravity="center_horizontal" android:text="Trained"/>
-            <TextView android:gravity="center_horizontal" android:text="Value"/>
-        </TableRow>
-
-    </TableLayout>
-</FrameLayout>
-</ScrollView>
+    android:layout_height="match_parent" tools:context="dps924.ddcharactermanager.SkillsFragment"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/skillNameHeader"
+            android:layout_width="0dp"
+            android:layout_weight="@dimen/skill_name_weight"
+            android:layout_height="wrap_content"
+            android:text="Skill" />
+        <TextView
+            android:id="@+id/skillModifierHeader"
+            android:layout_width="0dp"
+            android:layout_weight="@dimen/skill_modifier_weight"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Attribute" />
+        <TextView
+            android:id="@+id/skillTrainedHeader"
+            android:layout_width="0dp"
+            android:layout_weight="@dimen/skill_trained_weight"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Trained" />
+        <TextView
+            android:id="@+id/skillValueHeader"
+            android:layout_width="0dp"
+            android:layout_weight="@dimen/skill_value_weight"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Value" />
+    </LinearLayout>
+    <ListView
+        android:id="@+id/skillList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </ListView>
+</LinearLayout>

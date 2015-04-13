@@ -50,7 +50,7 @@ public class CharacterActivity extends ActionBarActivity
         //Set title bar to the first view title
         getSupportActionBar().setTitle(viewPager.getAdapter().getPageTitle(0));
         //TODO: Support for multiple possible databases
-        SQLiteAssetDatabase sqlDb = new SQLiteAssetDatabase(this, "TestDB", 1);
+        SQLiteAssetDatabase sqlDb = new SQLiteAssetDatabase(this, "4eDB", 1);
         ruleDatabase = new RuleDatabaseFactory(sqlDb).getRuleDatabase();
         //TODO: Creating testing DB and character. Should be dynamic
 
