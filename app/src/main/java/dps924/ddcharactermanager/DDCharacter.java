@@ -8,6 +8,7 @@ import dps924.ddcharactermanager.rules.AbilityRule;
 import dps924.ddcharactermanager.rules.AlignmentRule;
 import dps924.ddcharactermanager.rules.DeityRule;
 import dps924.ddcharactermanager.rules.FeatRule;
+import dps924.ddcharactermanager.rules.ItemRule;
 import dps924.ddcharactermanager.rules.RaceRule;
 import dps924.ddcharactermanager.rules.RuleDatabase;
 
@@ -24,6 +25,7 @@ public class DDCharacter {
     private HashMap<String, Integer> abilityScores = new HashMap<>();
     private ArrayList<String> trainedSkills = new ArrayList<>();
     private ArrayList<FeatRule> feats = new ArrayList<>();
+    private ArrayList<ItemRule> items = new ArrayList<>();
 
     public DDCharacter(String name, int level, String race, String charClass, RuleDatabase ruleDB) {
         this.name = name;
@@ -93,5 +95,15 @@ public class DDCharacter {
     public ArrayList<FeatRule> getFeats() { return feats; }
     public void addFeat(FeatRule feat) {
         feats.add(feat);
+    }
+    public ArrayList<ItemRule> getItems() { return items; }
+    public void addItem(ItemRule item) {
+        items.add(item);
+    }
+    public void removeItem(ItemRule item) {
+        items.remove(item);
+    }
+    public void removeItem(int index) {
+        items.remove(index);
     }
 }
