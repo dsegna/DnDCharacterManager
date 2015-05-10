@@ -25,7 +25,8 @@ public class CharacterActivity extends ActionBarActivity
         implements ProfileFragment.OnFragmentInteractionListener,
                    SkillsFragment.OnFragmentInteractionListener,
                    FeatsFragment.OnFragmentInteractionListener,
-                   CharactersFragment.OnFragmentInteractionListener {
+                   CharactersFragment.OnFragmentInteractionListener,
+                   ItemsFragment.OnFragmentInteractionListener{
     private static final String TAG = CharacterActivity.class.getName();
     ViewPager viewPager;
     RuleDatabase ruleDatabase;
