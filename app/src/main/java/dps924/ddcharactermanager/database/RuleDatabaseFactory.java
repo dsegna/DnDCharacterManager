@@ -7,7 +7,9 @@ import java.util.HashMap;
 
 import dps924.ddcharactermanager.rules.AbilityRule;
 import dps924.ddcharactermanager.rules.AlignmentRule;
+import dps924.ddcharactermanager.rules.ClassRule;
 import dps924.ddcharactermanager.rules.DeityRule;
+import dps924.ddcharactermanager.rules.RaceRule;
 import dps924.ddcharactermanager.rules.RuleDatabase;
 import dps924.ddcharactermanager.rules.SkillRule;
 
@@ -16,7 +18,9 @@ public class RuleDatabaseFactory {
     private static final String ALIGNMENT_TABLE = "Alignment",
                                 DEITY_TABLE = "DEITY",
                                 ABILITY_TABLE = "Ability",
-                                SKILL_TABLE = "Skill";
+                                SKILL_TABLE = "Skill",
+                                RACE_TABLE = "Race",
+                                CLASS_TABLE = "Class" ;
 
     private SQLiteDatabase database;
     private RuleDatabase ruleDatabase;
@@ -27,6 +31,8 @@ public class RuleDatabaseFactory {
         getDeityRules();
         getAbilityRules();
         getSkillRules();
+        getClassRules();
+        getRaceRules();
     }
     public RuleDatabase getRuleDatabase() {
         return ruleDatabase;
@@ -92,6 +98,34 @@ public class RuleDatabaseFactory {
                 trainedModifier
             );
             ruleDatabase.addSkillRule(skillRule);
+            cursor.moveToNext();
+        }
+    }
+    private void getRaceRules() {
+        Cursor cursor = database.rawQuery("select * from " + RACE_TABLE, null);
+        final int NAMECOLUMN = cursor.getColumnIndex("Name");
+        final int ABILITY1COLUMN = cursor.getColumnIndex("Ability1");
+        final int SKILL1COLUMN = cursor.getColumnIndex("Skill1");
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()) {
+            RaceRule raceRule = new RaceRule(
+                cursor.getString(NAMECOLUMN),
+                cursor.getString(ABILITY1COLUMN),
+                cursor.getString(SKILL1COLUMN)
+            );
+            ruleDatabase.addRaceRule(raceRule);
+            cursor.moveToNext();
+        }
+    }
+    private void getClassRules() {
+        Cursor cursor = database.rawQuery("select * from " + CLASS_TABLE, null);
+        final int NAMECOLUMN = cursor.getColumnIndex("Name");
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()) {
+            ClassRule classRule = new ClassRule(
+                    cursor.getString(NAMECOLUMN)
+            );
+            ruleDatabase.addClassRule(classRule);
             cursor.moveToNext();
         }
     }

@@ -18,6 +18,7 @@ public class RuleDatabase {
     private HashMap<String, FeatRule> featRules = new HashMap<>();
     private HashMap<String, AlignmentRule> alignmentRules = new HashMap<>();
     private HashMap<String, DeityRule> deityRules = new HashMap<>();
+    private HashMap<String, ClassRule> classRules = new HashMap<>();
 
     public LevelRule getLevelRule() {
         return levelRule;
@@ -116,6 +117,21 @@ public class RuleDatabase {
             deityRules.put(name, rule);
         } else {
             Log.v(TAG, "DeityRule with name: " + name + "already exists");
+        }
+    }
+    /* Class Rule */
+    public HashMap<String, ClassRule> getClassRules() { return classRules; }
+    public ArrayList<ClassRule> getClassRulesList() {
+        ArrayList<ClassRule> classList = new ArrayList<>();
+        classList.addAll(classRules.values());
+        return classList;
+    }
+    public void addClassRule(ClassRule rule) {
+        String name = rule.getName();
+        if(!classRules.containsKey(name)) {
+            classRules.put(name, rule);
+        } else {
+            Log.v(TAG, "ClassRule with name: " + name + "already exists");
         }
     }
     /* Language Rules */

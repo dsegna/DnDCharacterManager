@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 
 import dps924.ddcharactermanager.adapters.AlignmentSpinnerAdapter;
+import dps924.ddcharactermanager.adapters.ClassSpinnerAdapter;
 import dps924.ddcharactermanager.adapters.DeitySpinnerAdapter;
 import dps924.ddcharactermanager.adapters.RaceSpinnerAdapter;
 import dps924.ddcharactermanager.rules.AlignmentRule;
@@ -104,6 +105,11 @@ public class ProfileFragment extends Fragment {
         RaceSpinnerAdapter raceSpinnerAdapter = new RaceSpinnerAdapter(characterActivity,
                 android.R.layout.simple_spinner_item, character.getRuleDB().getRaceRulesList());
         raceSpinner.setAdapter(raceSpinnerAdapter);
+        //Fill Class Spinner
+        Spinner classSpinner = (Spinner) view.findViewById(R.id.classSpinner);
+        ClassSpinnerAdapter classSpinnerAdapter = new ClassSpinnerAdapter(characterActivity,
+                android.R.layout.simple_spinner_item, character.getRuleDB().getClassRulesList());
+        classSpinner.setAdapter(classSpinnerAdapter);
         //Fill Alignments Spinner
         Spinner alignmentSpinner = (Spinner) view.findViewById(R.id.alignmentSpinner);
         AlignmentSpinnerAdapter alignmentSpinnerAdapter = new AlignmentSpinnerAdapter(characterActivity,

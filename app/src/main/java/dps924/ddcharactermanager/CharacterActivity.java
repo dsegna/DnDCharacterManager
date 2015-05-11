@@ -75,11 +75,11 @@ public class CharacterActivity extends ActionBarActivity
         SQLiteAssetDatabase sqlDb = new SQLiteAssetDatabase(this, "4eDB", 1);
         ruleDatabase = new RuleDatabaseFactory(sqlDb).getRuleDatabase();
         //TODO: Creating testing DB and character. Should be dynamic
-
+        /*
         ruleDatabase.addRaceRule(new RaceRule("Human"));
         ruleDatabase.addRaceRule(new RaceRule("Dwarf"));
         ruleDatabase.addRaceRule(new RaceRule("Halfling"));
-
+        */
         FeatRule feat1 = new FeatRule("Improved Stealth", "+5 feat bonus to Stealth checks");
         FeatRule feat2 = new FeatRule("Improved Streetwise", "+5 feat bonus to Streetwise checks");
         FeatRule feat3 = new FeatRule("Improved Thievery", "+5 feat bonus to Thievery checks");
