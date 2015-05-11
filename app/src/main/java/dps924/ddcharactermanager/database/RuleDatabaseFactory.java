@@ -3,12 +3,14 @@ package dps924.ddcharactermanager.database;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import dps924.ddcharactermanager.rules.AbilityRule;
 import dps924.ddcharactermanager.rules.AlignmentRule;
 import dps924.ddcharactermanager.rules.ClassRule;
 import dps924.ddcharactermanager.rules.DeityRule;
+import dps924.ddcharactermanager.rules.FeatRule;
 import dps924.ddcharactermanager.rules.RaceRule;
 import dps924.ddcharactermanager.rules.RuleDatabase;
 import dps924.ddcharactermanager.rules.SkillRule;
@@ -19,7 +21,7 @@ public class RuleDatabaseFactory {
                                 DEITY_TABLE = "DEITY",
                                 ABILITY_TABLE = "Ability",
                                 SKILL_TABLE = "Skill",
-                                RACE_TABLE = "Race",
+                                RACE_TABLE = "Race", RACEFEATS_TABLE = "RaceFeats",
                                 CLASS_TABLE = "Class" ;
 
     private SQLiteDatabase database;
@@ -108,10 +110,24 @@ public class RuleDatabaseFactory {
         final int SKILL1COLUMN = cursor.getColumnIndex("Skill1");
         cursor.moveToFirst();
         while(!cursor.isAfterLast()) {
+            String name = cursor.getString(NAMECOLUMN);
+            Cursor featsCursor = database.rawQuery("select * from " + RACEFEATS_TABLE + " where Race = " + '"' + name + '"', null);
+            final int FEATNAMECOLUMN = featsCursor.getColumnIndex("Name");
+            final int FEATDESCRIPTION = featsCursor.getColumnIndex("Description");
+            ArrayList<FeatRule> raceFeats = new ArrayList<>();
+            featsCursor.moveToFirst();
+            while(!featsCursor.isAfterLast()) {
+                raceFeats.add(new FeatRule(
+                        featsCursor.getString(FEATNAMECOLUMN),
+                        featsCursor.getString(FEATDESCRIPTION)
+                ));
+                featsCursor.moveToNext();
+            }
             RaceRule raceRule = new RaceRule(
-                cursor.getString(NAMECOLUMN),
+                name,
                 cursor.getString(ABILITY1COLUMN),
-                cursor.getString(SKILL1COLUMN)
+                cursor.getString(SKILL1COLUMN),
+                raceFeats
             );
             ruleDatabase.addRaceRule(raceRule);
             cursor.moveToNext();
@@ -122,6 +138,7 @@ public class RuleDatabaseFactory {
         final int NAMECOLUMN = cursor.getColumnIndex("Name");
         cursor.moveToFirst();
         while(!cursor.isAfterLast()) {
+
             ClassRule classRule = new ClassRule(
                     cursor.getString(NAMECOLUMN)
             );

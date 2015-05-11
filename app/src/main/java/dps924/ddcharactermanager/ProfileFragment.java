@@ -105,6 +105,8 @@ public class ProfileFragment extends Fragment {
         RaceSpinnerAdapter raceSpinnerAdapter = new RaceSpinnerAdapter(characterActivity,
                 android.R.layout.simple_spinner_item, character.getRuleDB().getRaceRulesList());
         raceSpinner.setAdapter(raceSpinnerAdapter);
+        raceSpinner.setSelection(raceSpinnerAdapter.getPosition(character.getRace().getName()));
+        raceSpinner.setOnItemSelectedListener(raceSpinnerAdapter.onItemSelectedListener);
         //Fill Class Spinner
         Spinner classSpinner = (Spinner) view.findViewById(R.id.classSpinner);
         ClassSpinnerAdapter classSpinnerAdapter = new ClassSpinnerAdapter(characterActivity,
