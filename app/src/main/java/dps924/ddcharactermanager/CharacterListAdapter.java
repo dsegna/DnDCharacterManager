@@ -47,7 +47,7 @@ public class CharacterListAdapter extends ArrayAdapter<DDCharacter>{
         ImageView iv;
         holder.txtName.setText(character.getName());
         holder.txtLevel.setText(Integer.toString(character.getLevel()));
-        holder.txtRace.setText(character.getRace());
+        holder.txtRace.setText(character.getRace().getName());
         holder.txtClass.setText(character.getCharClass());
 
         return convertView;

@@ -20,7 +20,6 @@ public class MainActivity extends ActionBarActivity
 
     ViewPager viewPager;
     RuleDatabase testDB;
-    DDCharacter testChar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +58,6 @@ public class MainActivity extends ActionBarActivity
         testDB.addSkillRule(new SkillRule("Stealth", "DEX", 5));
         testDB.addSkillRule(new SkillRule("Streetwise", "CHA", 5));
         testDB.addSkillRule(new SkillRule("Thievery", "DEX", 5));
-
-        testChar = new DDCharacter("Test", 1, "TestRace", "TestClass", testDB);
     }
 
     @Override

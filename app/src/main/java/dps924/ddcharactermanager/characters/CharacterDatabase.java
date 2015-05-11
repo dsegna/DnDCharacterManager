@@ -5,6 +5,7 @@ import java.util.List;
 
 import dps924.ddcharactermanager.DDCharacter;
 import dps924.ddcharactermanager.rules.FeatRule;
+import dps924.ddcharactermanager.rules.RaceRule;
 import dps924.ddcharactermanager.rules.RuleDatabase;
 
 public class CharacterDatabase {
@@ -18,14 +19,15 @@ public class CharacterDatabase {
         createCharacter("Mark", 1, "Dwarf", "Fighter");
         createCharacter("John", 2, "Human", "Paladin");
         createCharacter("Bell", 3, "Elf", "Wizard");
-        createCharacter("Gnar", 4, "Gnome", "Artificer");
-        createCharacter("Towelie", 5, "Towel", "Mesmer");
+        createCharacter("Gnar", 4, "Halfling", "Artificer");
+        createCharacter("Towelie", 5, "Dragonborn", "Mesmer");
     }
     public List<DDCharacter> getCharactersList() {
         return characters;
     }
     public void createCharacter(String n, int l, String r, String c) {
-        DDCharacter character = new DDCharacter(n, l, r, c, ruleDB);
+        RaceRule race = ruleDB.getRaceRules().get(r);
+        DDCharacter character = new DDCharacter(n, l, race, c, ruleDB);
         for(FeatRule rule : ruleDB.getFeatRules().values()) {
             character.addFeat(new FeatRule(rule.getName(), rule.getEffect()));
         }

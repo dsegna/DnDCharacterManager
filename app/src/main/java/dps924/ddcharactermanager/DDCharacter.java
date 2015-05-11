@@ -6,6 +6,7 @@ import java.util.HashMap;
 import dps924.ddcharactermanager.exceptions.InvalidAbilityException;
 import dps924.ddcharactermanager.rules.AbilityRule;
 import dps924.ddcharactermanager.rules.AlignmentRule;
+import dps924.ddcharactermanager.rules.ClassRule;
 import dps924.ddcharactermanager.rules.DeityRule;
 import dps924.ddcharactermanager.rules.FeatRule;
 import dps924.ddcharactermanager.rules.ItemRule;
@@ -15,19 +16,20 @@ import dps924.ddcharactermanager.rules.RuleDatabase;
 public class DDCharacter {
 
     // Character Profile Values
-    private String name, race, charClass, paragon ="", epic ="", desc ="";
+    private String name, charClass, paragon ="", epic ="", desc ="";
     private int level, exp = 0;
 
     private RuleDatabase ruleDB;
     private AlignmentRule alignment;
     private DeityRule deity;
-    private RaceRule raceRule;
+    private RaceRule race;
+    private ClassRule classRule;
     private HashMap<String, Integer> abilityScores = new HashMap<>();
     private ArrayList<String> trainedSkills = new ArrayList<>();
     private ArrayList<FeatRule> feats = new ArrayList<>();
     private ArrayList<ItemRule> items = new ArrayList<>();
 
-    public DDCharacter(String name, int level, String race, String charClass, RuleDatabase ruleDB) {
+    public DDCharacter(String name, int level, RaceRule race, String charClass, RuleDatabase ruleDB) {
         this.name = name;
         this.level = level;
         this.race = race;
@@ -71,8 +73,15 @@ public class DDCharacter {
     public String getName() {
         return name;
     }
-    public String getRace() {
-        return race;
+    public RaceRule getRace() { return race; }
+    public void setRace(RaceRule race) {
+        for(FeatRule raceFeat : this.race.getRaceFeats()) {
+            feats.remove(raceFeat);
+        }
+        this.race = race;
+        for(FeatRule raceFeat : race.getRaceFeats()) {
+            feats.add(raceFeat);
+        }
     }
     public String getCharClass() {
         return charClass;
